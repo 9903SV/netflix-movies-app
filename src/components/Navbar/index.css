@@ -1,0 +1,53 @@
+.navbar-bg-container {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.navbar-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: 135px;
+  height: 39px;
+  margin: 0 16px;
+}
+
+.navbar-link {
+  left: 23.82%;
+  right: 73.26%;
+  font: normal 400 16px/26px HK Grotesk;
+  letter-spacing: -0.355556px;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 16px;
+}
+
+.navbar-highlight-link {
+  font-weight: bold;
+}
+
+.navbar-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-input {
+  background-color: transparent;
+  border-style: none;
+  color: #ffffff;
+}
+
+.navbar-search-icon {
+  color: #ffffff;
+  margin: 0 16px;
+}
+
+.navbar-profile-avatar {
+  margin: 0 16px;
+}

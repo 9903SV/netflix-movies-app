@@ -1,0 +1,9 @@
+.footer-bg-container {
+  height: 20vh;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

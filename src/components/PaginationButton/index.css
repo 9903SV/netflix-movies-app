@@ -1,0 +1,22 @@
+.pagination-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.pagination-button {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  margin: 16px;
+  font-size: 24px;
+}
+
+.pagination-back-button {
+  border-radius: 4px 0 0 4px;
+}
+
+.pagination-forward-button {
+  border-radius: 0 4px 4px 0;
+}

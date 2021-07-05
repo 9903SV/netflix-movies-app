@@ -1,0 +1,38 @@
+.home-top-container {
+  background-image: url('https://res.cloudinary.com/degjdup40/image/upload/v1624553384/Image_jhfns4.png');
+  height: 90vh;
+  background-size: cover;
+}
+
+.home-top-container-content {
+  width: 400px;
+  margin-left: 16px;
+  position: absolute;
+  top: 25%;
+}
+
+.home-top-container-heading {
+  font: normal 600 32px/62px HK Grotesk;
+  color: #ffffff;
+  margin: 16px;
+}
+
+.home-top-container-description {
+  font: normal 500 15px/26px HK Grotest;
+  color: #ffffff;
+  margin: 16px;
+}
+
+.home-top-container-button {
+  padding: 8px 18px;
+  background: #ffffff;
+  border-radius: 4px;
+  margin: 0px 0px;
+  border-style: none;
+  margin: 16px;
+}
+
+.home-bottom-container {
+  background-color: #000000;
+  padding: 16px;
+}

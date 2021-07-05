@@ -1,0 +1,8 @@
+.moviesearch-bg-container {
+  background-color: #000000;
+  min-height: 100vh;
+}
+
+.moviesearch-movies-container {
+  text-align: center;
+}

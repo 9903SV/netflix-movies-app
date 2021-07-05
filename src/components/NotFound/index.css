@@ -1,0 +1,46 @@
+.notfound-bg-container {
+  background-image: url('https://res.cloudinary.com/dfheomufg/image/upload/v1624963143/Movies%20App/snow-removal-machine-working-high-ski-slope-snowstorm_454047-2149_1_ior7mh.png');
+  height: 88vh;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notfound-heading {
+  font: normal bold 60px/100px HK Grotesk;
+  color: #ffffff;
+  margin: 16px 0;
+}
+
+.notfound-description {
+  font: normal 500 30px/31px HK Grotesk;
+  color: #ffffff;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.notfound-button {
+  padding: 8px 18px;
+  background: #ffffff;
+  border-radius: 4px;
+  border-style: none;
+  margin: 16px 0;
+  font: normal 500 14px/24px Inter;
+  color: #171f46;
+}
+
+.notfound-errortext {
+  font: normal 500 24px/42px HK Grotesk;
+  text-align: center;
+  color: #ffffff;
+  margin: 16px 0;
+}
+
+.notfound-errorcode {
+  font: normal bold 24px/42px HK Grotesk;
+  text-align: center;
+  color: #ffffff;
+  margin: 16px 0;
+}

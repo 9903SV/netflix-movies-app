@@ -1,0 +1,48 @@
+.account-bg-container {
+  padding: 32px;
+}
+
+.account-heading {
+  font: normal 500 36px/42px Roboto;
+  color: #131313;
+}
+
+.account-horizontal-line {
+  margin: 32px 0;
+}
+
+.account-details-container {
+  display: flex;
+}
+
+.account-text {
+  font: normal 600 24px/31px HK Grotesk;
+  color: #94a3b8;
+  margin-left: 16px;
+}
+
+.account-details {
+  font: normal normal 24px/31px HK Grotesk;
+  color: #1e293b;
+  margin-left: 16px;
+}
+
+.account-resolution {
+  border-radius: 4px;
+  border: 1px solid #000000;
+  margin-left: 16px;
+}
+
+.account-button-container {
+  text-align: center;
+}
+
+.account-button {
+  padding: 8px 20px;
+  background: #e50914;
+  border-radius: 4px;
+  font: normal bold 16px/24px Roboto;
+  color: #ffffff;
+  margin: 0px 10px;
+  border-style: none;
+}

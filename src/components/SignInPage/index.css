@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+}
+
+.signin-bg-container {
+  background-image: url('https://res.cloudinary.com/degjdup40/image/upload/v1624531222/netfilx_1_1x_c4nkae.jpg');
+  min-height: 100vh;
+  background-size: cover;
+}
+
+.signin-movies-logo {
+  position: absolute;
+  width: 100px;
+  height: 32px;
+  left: 75px;
+  top: 28px;
+}
+
+.signin-main-container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-form-container {
+  background: #0c0b10;
+  opacity: 0.8;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 32px;
+  width: 400px;
+}
+
+.signin-form-heading {
+  font: normal 600 32px/40px HK Grotesk;
+  text-align: center;
+  color: #ffffff;
+  margin: 16px;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signin-labelinput-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.signin-label {
+  width: 65px;
+  height: 16px;
+  font: normal bold 12px/16px Roboto;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.signin-input {
+  height: 30px;
+  background: #333333;
+  border-radius: 2px;
+  border-style: none;
+  font: normal normal 14px/24px Roboto;
+  color: #ffffff;
+  padding: 8px;
+}
+
+.signin-error-msg {
+  width: 239px;
+  height: 18px;
+  font: normal normal 14px/18px HK Grotesk;
+  color: #fb923c;
+}
+
+.signin-button-container {
+  text-align: center;
+  margin: 16px;
+}
+
+.signin-button {
+  padding: 8px 20px;
+  background: #e50914;
+  border-radius: 4px;
+  color: #ffffff;
+  border-style: none;
+}
