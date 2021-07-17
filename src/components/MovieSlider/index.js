@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import {useState, useEffect} from 'react'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
@@ -37,27 +37,25 @@ const settings = {
   ],
 }
 
-class MovieSlider extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {moviesData: []}
-  }
+const MovieSlider = props => {
+  const [state, setState] = useState({moviesData: []})
 
-  componentDidMount() {
-    this.fetchMoviesData()
-  }
-
-  fetchMoviesData = () => {
-    const {url} = this.props
+  const fetchMoviesData = () => {
+    const {url} = props
     fetch(url)
       .then(response => response.json())
       .then(response => {
-        this.setState({moviesData: response.results})
+        setState({moviesData: response.results})
       })
   }
 
-  renderSlider = () => {
-    const {moviesData} = this.state
+  useEffect(() => {
+    fetchMoviesData()
+    /* eslint-disable-next-line */
+  }, [])
+
+  const renderSlider = () => {
+    const {moviesData} = state
 
     return (
       <Slider {...settings}>
@@ -81,31 +79,29 @@ class MovieSlider extends Component {
     )
   }
 
-  render() {
-    const {moviesData} = this.state
-    const {title} = this.props
+  const {moviesData} = state
+  const {title} = props
 
-    return (
-      <div className="slick-app-container">
-        <h1 className="slick-app-heading">{title}</h1>
-        <div style={{width: '80%'}}>
-          {moviesData.length ? (
-            this.renderSlider()
-          ) : (
-            <Loader
-              style={{textAlign: 'center'}}
-              type="TailSpin"
-              color="red"
-              height={50}
-              width={50}
-            />
-          )}
+  return (
+    <div className="slick-app-container">
+      <h1 className="slick-app-heading">{title}</h1>
+      <div style={{width: '80%'}}>
+        {moviesData.length ? (
+          renderSlider()
+        ) : (
+          <Loader
+            style={{textAlign: 'center'}}
+            type="TailSpin"
+            color="red"
+            height={50}
+            width={50}
+          />
+        )}
 
-          <Slider {...settings} />
-        </div>
+        <Slider {...settings} />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default MovieSlider

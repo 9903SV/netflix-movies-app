@@ -1,4 +1,4 @@
-import {Component} from 'react'
+// import {Component} from 'react'
 import Navbar from '../Navbar'
 import MovieSlider from '../MovieSlider'
 import Footer from '../Footer'
@@ -25,47 +25,45 @@ const sliderData = [
   },
 ]
 
-class HomePage extends Component {
-  render() {
-    const hideNavbarLinkElement = false
-    const highlightHomeLink = true
-    const highlightPopularLink = false
-    return (
-      <div>
-        <div className="home-top-container">
-          <Navbar
-            linkText="Popular"
-            hideLinkSearchProfile={hideNavbarLinkElement}
-            backgroundColor="transparent"
-            highlightHomeLink={highlightHomeLink}
-            highlightPopularLink={highlightPopularLink}
-          />
-          <div className="home-top-container-content">
-            <h1 className="home-top-container-heading">Super Man</h1>
-            <p className="home-top-container-description">
-              Superman is a fictional superhero who first appeared in American
-              comic books published by DC Comics
-            </p>
-            <button className="home-top-container-button" type="button">
-              Play
-            </button>
-          </div>
+const HomePage = () => {
+  const hideNavbarLinkElement = false
+  const highlightHomeLink = true
+  const highlightPopularLink = false
+  return (
+    <div>
+      <div className="home-top-container">
+        <Navbar
+          linkText="Popular"
+          hideLinkSearchProfile={hideNavbarLinkElement}
+          backgroundColor="transparent"
+          highlightHomeLink={highlightHomeLink}
+          highlightPopularLink={highlightPopularLink}
+        />
+        <div className="home-top-container-content">
+          <h1 className="home-top-container-heading">Super Man</h1>
+          <p className="home-top-container-description">
+            Superman is a fictional superhero who first appeared in American
+            comic books published by DC Comics
+          </p>
+          <button className="home-top-container-button" type="button">
+            Play
+          </button>
         </div>
-        <div className="home-bottom-container">
-          <div>
-            {sliderData.map(eachSlider => (
-              <MovieSlider
-                url={eachSlider.url}
-                title={eachSlider.title}
-                key={eachSlider.id}
-              />
-            ))}
-          </div>
-        </div>
-        <Footer />
       </div>
-    )
-  }
+      <div className="home-bottom-container">
+        <div>
+          {sliderData.map(eachSlider => (
+            <MovieSlider
+              url={eachSlider.url}
+              title={eachSlider.title}
+              key={eachSlider.id}
+            />
+          ))}
+        </div>
+      </div>
+      <Footer />
+    </div>
+  )
 }
 
 export default HomePage
