@@ -37,7 +37,7 @@ const settings = {
   ],
 }
 
-const MovieSlider = props => {
+const MovieSlider = (props: {url: string; title: string}) => {
   const [state, setState] = useState({moviesData: []})
 
   const fetchMoviesData = () => {
@@ -59,7 +59,7 @@ const MovieSlider = props => {
 
     return (
       <Slider {...settings}>
-        {moviesData.map(movie => {
+        {moviesData.map((movie: {id: string; poster_path: string}) => {
           const movieImage = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
           return (
             <Link to={`/movie/${movie.id}`} key={movie.id}>
@@ -90,7 +90,7 @@ const MovieSlider = props => {
           renderSlider()
         ) : (
           <Loader
-            style={{textAlign: 'center'}}
+            // style={{textAlign: 'center'}}
             type="TailSpin"
             color="red"
             height={50}

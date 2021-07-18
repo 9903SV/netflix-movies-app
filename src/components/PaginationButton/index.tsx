@@ -1,7 +1,12 @@
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import './index.css'
 
-const PaginationButton = props => {
+const PaginationButton = (props: {
+  /* eslint-disable */
+  moveBackPage: Function, 
+  moveForwardPage: Function,
+  pageNumber: number
+}) => {
   const {moveBackPage, moveForwardPage, pageNumber} = props
 
   const backButtonClicked = () => {

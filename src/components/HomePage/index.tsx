@@ -1,4 +1,3 @@
-// import {Component} from 'react'
 import Navbar from '../Navbar'
 import MovieSlider from '../MovieSlider'
 import Footer from '../Footer'

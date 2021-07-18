@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import Navbar from '../Navbar'
 import './index.css'
 
-const AccountPage = props => {
+const AccountPage = (props: {history: any}) => {
   const hideNavbarLinkElement = false
   const {history} = props
 
@@ -12,7 +12,7 @@ const AccountPage = props => {
   }
 
   const username = Cookies.get('movies_username')
-  const passwordLength = Cookies.get('movies_password').length
+  const passwordLength = Cookies.get('movies_password') || ''.length
 
   let password = ''
   for (let count = 0; count < passwordLength; count += 1) {

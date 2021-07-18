@@ -3,24 +3,28 @@ import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 import './index.css'
 
-const SignInPage = props => {
+const SignInPage = (props: {history: any}) => {
   const [state, setState] = useState({
     username: '',
     password: '',
     showErrorMsg: false,
-    showUsernameErrorMsg: '',
-    showPasswordErrorMsg: '',
+    showUsernameErrorMsg: false,
+    showPasswordErrorMsg: false,
   })
 
-  const usernameChanged = event => {
+  const usernameChanged = (event: {target: {value: string}}) => {
     setState(prevState => ({...prevState, username: event.target.value}))
   }
 
-  const passwordChanged = event => {
+  const passwordChanged = (event: {target: {value: string}}) => {
     setState(prevState => ({...prevState, password: event.target.value}))
   }
 
-  const loginSuccess = (jwtToken, username, password) => {
+  const loginSuccess = (
+    jwtToken: string,
+    username: string,
+    password: string,
+  ) => {
     const {history} = props
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     Cookies.set('movies_username', username, {expires: 30})
@@ -28,11 +32,11 @@ const SignInPage = props => {
     history.replace('/')
   }
 
-  const showErrorMsg = () => {
+  const showErrorMsgFunction = () => {
     setState(prevState => ({...prevState, showErrorMsg: true}))
   }
 
-  const usernameBlurred = event => {
+  const usernameBlurred = (event: {target: {value: string}}) => {
     if (event.target.value === '') {
       setState(prevState => ({...prevState, showUsernameErrorMsg: true}))
     } else {
@@ -40,7 +44,7 @@ const SignInPage = props => {
     }
   }
 
-  const passwordBlurred = event => {
+  const passwordBlurred = (event: {target: {value: string}}) => {
     if (event.target.value === '') {
       setState(prevState => ({...prevState, showPasswordErrorMsg: true}))
     } else {
@@ -87,11 +91,11 @@ const SignInPage = props => {
     if (response.ok) {
       loginSuccess(data.jwtToken, username, password)
     } else {
-      showErrorMsg()
+      showErrorMsgFunction()
     }
   }
 
-  const {showUsernameErrorMsg, showPasswordErrorMsg} = state
+  const {showUsernameErrorMsg, showPasswordErrorMsg, showErrorMsg} = state
   const jwtToken = Cookies.get('jwt_token')
   if (jwtToken !== undefined) {
     return <Redirect to="/" />

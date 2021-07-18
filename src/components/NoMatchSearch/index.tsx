@@ -1,9 +1,9 @@
 import Navbar from '../Navbar'
 import './index.css'
 
-const NoMatchSearch = props => {
+const NoMatchSearch = (props: {inputText: string}) => {
   const {inputText} = props
-  const hideNavbarLinkElement = false
+  const hideLinkSearchProfile = false
   const highlightHomeLink = false
   const highlightPopularLink = true
 
@@ -11,7 +11,7 @@ const NoMatchSearch = props => {
     <div>
       <Navbar
         linkText="Popular"
-        hideNavbarLinkElement={hideNavbarLinkElement}
+        hideLinkSearchProfile={hideLinkSearchProfile}
         backgroundColor="#000000"
         highlightHomeLink={highlightHomeLink}
         highlightPopularLink={highlightPopularLink}

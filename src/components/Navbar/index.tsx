@@ -1,12 +1,20 @@
 import {useState} from 'react'
 import {BsSearch} from 'react-icons/bs'
-import {Link, withRouter} from 'react-router-dom'
+import {Link, withRouter, RouteComponentProps} from 'react-router-dom'
 import './index.css'
 
-const Navbar = props => {
+interface navbarPropsType extends RouteComponentProps {
+  backgroundColor: string; /* eslint-disable-line */ 
+  hideLinkSearchProfile: boolean; /* eslint-disable-line */  
+  linkText: string; /* eslint-disable-line */ 
+  highlightHomeLink?: boolean; /* eslint-disable-line */ 
+  highlightPopularLink?: boolean
+}
+
+const Navbar = (props: navbarPropsType) => {
   const [state, setState] = useState({input: ''})
 
-  const inputChanged = event => {
+  const inputChanged = (event: {target: {value: string}}) => {
     setState({input: event.target.value})
   }
 

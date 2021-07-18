@@ -64,7 +64,7 @@ const PopularPage = () => {
       />
       {isLoading ? (
         <Loader
-          style={{textAlign: 'center'}}
+          // style={{textAlign: 'center'}}
           type="TailSpin"
           color="red"
           height={50}
@@ -72,15 +72,17 @@ const PopularPage = () => {
         />
       ) : (
         <div className="popular-movies-container">
-          {popularMovies.map(eachResult => (
-            <Link to={`/movie/${eachResult.id}`} key={eachResult.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/original/${eachResult.poster_path}`}
-                alt={eachResult.id}
-                className="movies-more-poster"
-              />
-            </Link>
-          ))}
+          {popularMovies.map(
+            (eachResult: {id: string; poster_path: string}) => (
+              <Link to={`/movie/${eachResult.id}`} key={eachResult.id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${eachResult.poster_path}`}
+                  alt={eachResult.id}
+                  className="movies-more-poster"
+                />
+              </Link>
+            ),
+          )}
           <PaginationButton
             moveBackPage={moveBackPage}
             moveForwardPage={moveForwardPage}
