@@ -1,9 +1,7 @@
-import {useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
-import {observer} from 'mobx-react'
 import Loader from 'react-loader-spinner'
-import MovieSliderStore from '../Store/movieSliderStore'
 import './index.css'
 
 const settings = {
@@ -39,16 +37,24 @@ const settings = {
   ],
 }
 
-const MovieSlider = observer((props: {url: string; title: string}) => {
+const MovieSlider = (props: {url: string; title: string}) => {
+  const [state, setState] = useState({moviesData: []})
   const {url} = props
 
+  const fetchMoviesData = async () => {
+    const response = await fetch(url)
+    const data = await response.json()
+
+    setState({moviesData: data.results})
+  }
+
   useEffect(() => {
-    MovieSliderStore.fetchMoviesData(url)
+    fetchMoviesData()
     /* eslint-disable-next-line */
   }, [])
 
   const renderSlider = () => {
-    const {moviesData} = MovieSliderStore.state
+    const {moviesData} = state
 
     return (
       <Slider {...settings}>
@@ -72,7 +78,7 @@ const MovieSlider = observer((props: {url: string; title: string}) => {
     )
   }
 
-  const {moviesData} = MovieSliderStore.state
+  const {moviesData} = state
   const {title} = props
 
   return (
@@ -90,11 +96,10 @@ const MovieSlider = observer((props: {url: string; title: string}) => {
             width={50}
           />
         )}
-
         <Slider {...settings} />
       </div>
     </div>
   )
-})
+}
 
 export default MovieSlider
