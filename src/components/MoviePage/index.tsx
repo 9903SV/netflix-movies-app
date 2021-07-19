@@ -152,7 +152,9 @@ const MoviePage = (props: {match: {params: {id: number}}}) => {
   )
 
   const hideNavbarLinkElement = false
-  const {movieData, isLoading} = state
+  // const {movieData: movieDataType, isLoading: boolean} = state
+  const movieData: movieDataType = state.movieData /* eslint-disable-line */
+  const isLoading: boolean = state.isLoading /* eslint-disable-line */
 
   return (
     <div>
@@ -161,7 +163,7 @@ const MoviePage = (props: {match: {params: {id: number}}}) => {
           backgroundImage: `${
             isLoading
               ? ''
-              : `url(https://image.tmdb.org/t/p/original/yIpaahwOBk4uVUBNcHkoZdcXPCK.jpg`
+              : `url(https://image.tmdb.org/t/p/original/${movieData.backdropPath}`
           }`,
           minHeight: '100vh',
           padding: '16px',
