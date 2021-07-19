@@ -1,6 +1,8 @@
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
+import {observer} from 'mobx-react'
+import MovieStore from '../Store/movieStore'
 import Navbar from '../Navbar'
 import './index.css'
 
@@ -20,51 +22,51 @@ export interface movieDataType {
   moreMovies?: any /* eslint-disable-line */
 }
 
-const MoviePage = (props: {match: {params: {id: number}}}) => {
-  const [state, setState] = useState({movieData: {}, isLoading: true})
+const MoviePage = observer((props: {match: {params: {id: number}}}) => {
+  // const [state, setState] = useState({movieData: {}, isLoading: true})
 
-  const timeInHrs = (time: number) => {
-    const hrs = Math.floor(time / 60)
-    const mins = time - hrs * 60
-    return `${hrs}h ${mins}m`
-  }
+  // const timeInHrs = (time: number) => {
+  //   const hrs = Math.floor(time / 60)
+  //   const mins = time - hrs * 60
+  //   return `${hrs}h ${mins}m`
+  // }
 
   const {match} = props
   const {params} = match
   const {id} = params
 
-  const getMovieData = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US`,
-    )
-    const data = await response.json()
+  // const getMovieData = async () => {
+  //   const response = await fetch(
+  //     `https://api.themoviedb.org/3/movie/${id}?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US`,
+  //   )
+  //   const data = await response.json()
 
-    const moreResponse = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US`,
-    )
-    const moreData = await moreResponse.json()
+  //   const moreResponse = await fetch(
+  //     `https://api.themoviedb.org/3/movie/${id}/similar?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US`,
+  //   )
+  //   const moreData = await moreResponse.json()
 
-    const updatedData: movieDataType = {
-      backdropPath: data.backdrop_path,
-      originalTitle: data.original_title,
-      runtime: timeInHrs(data.runtime),
-      adult: data.adult,
-      releaseYear: new Date(data.release_date).getFullYear(),
-      overview: data.overview,
-      genres: data.genres,
-      spokenLanguages: data.spoken_languages,
-      voteCount: data.vote_count,
-      voteAverage: data.vote_average,
-      budget: data.budget,
-      releaseDate: data.release_date,
-      moreMovies: moreData.results,
-    }
+  //   const updatedData: movieDataType = {
+  //     backdropPath: data.backdrop_path,
+  //     originalTitle: data.original_title,
+  //     runtime: timeInHrs(data.runtime),
+  //     adult: data.adult,
+  //     releaseYear: new Date(data.release_date).getFullYear(),
+  //     overview: data.overview,
+  //     genres: data.genres,
+  //     spokenLanguages: data.spoken_languages,
+  //     voteCount: data.vote_count,
+  //     voteAverage: data.vote_average,
+  //     budget: data.budget,
+  //     releaseDate: data.release_date,
+  //     moreMovies: moreData.results,
+  //   }
 
-    setState({movieData: updatedData, isLoading: false})
-  }
+  //   setState({movieData: updatedData, isLoading: false})
+  // }
 
   useEffect(() => {
-    getMovieData()
+    MovieStore.getMovieData(id)
     /* eslint-disable-next-line */
   }, [id])
 
@@ -152,9 +154,8 @@ const MoviePage = (props: {match: {params: {id: number}}}) => {
   )
 
   const hideNavbarLinkElement = false
-  // const {movieData: movieDataType, isLoading: boolean} = state
-  const movieData: movieDataType = state.movieData /* eslint-disable-line */
-  const isLoading: boolean = state.isLoading /* eslint-disable-line */
+  const movieData: movieDataType = MovieStore.state.movieData /* eslint-disable-line */
+  const isLoading: boolean = MovieStore.state.isLoading /* eslint-disable-line */
 
   return (
     <div>
@@ -194,6 +195,6 @@ const MoviePage = (props: {match: {params: {id: number}}}) => {
       )}
     </div>
   )
-}
+})
 
 export default MoviePage

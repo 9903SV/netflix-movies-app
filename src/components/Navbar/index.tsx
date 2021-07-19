@@ -1,6 +1,7 @@
-import {useState} from 'react'
 import {BsSearch} from 'react-icons/bs'
 import {Link, withRouter, RouteComponentProps} from 'react-router-dom'
+import {observer} from 'mobx-react'
+import MovieSearchStore from '../Store/movieSearchStore'
 import './index.css'
 
 interface navbarPropsType extends RouteComponentProps {
@@ -11,11 +12,9 @@ interface navbarPropsType extends RouteComponentProps {
   highlightPopularLink?: boolean
 }
 
-const Navbar = (props: navbarPropsType) => {
-  const [state, setState] = useState({input: ''})
-
+const Navbar = observer((props: navbarPropsType) => {
   const inputChanged = (event: {target: {value: string}}) => {
-    setState({input: event.target.value})
+    MovieSearchStore.state.inputText = event.target.value
   }
 
   const {
@@ -25,7 +24,6 @@ const Navbar = (props: navbarPropsType) => {
     highlightHomeLink,
     highlightPopularLink,
   } = props
-  const {input} = state
 
   return (
     <div style={{background: backgroundColor}} className="navbar-bg-container">
@@ -65,9 +63,9 @@ const Navbar = (props: navbarPropsType) => {
             onChange={inputChanged}
             className="navbar-input"
             type="search"
-            value={input}
+            value={MovieSearchStore.state.inputText}
           />
-          <Link to={`/search/${input}`}>
+          <Link to={`/search/${MovieSearchStore.state.inputText}`}>
             <BsSearch className="navbar-search-icon" />
           </Link>
         </div>
@@ -81,6 +79,6 @@ const Navbar = (props: navbarPropsType) => {
       </div>
     </div>
   )
-}
+})
 
 export default withRouter(Navbar)

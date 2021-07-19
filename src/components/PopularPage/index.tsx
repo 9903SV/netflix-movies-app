@@ -1,56 +1,41 @@
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
+import {observer} from 'mobx-react'
 import Navbar from '../Navbar'
 import PaginationButton from '../PaginationButton'
+import MoviePopularStore from '../Store/moviePopularStore'
 import './index.css'
 
-const PopularPage = () => {
-  const [state, setState] = useState({
-    popularMovies: [],
-    isLoading: true,
-    pageNumber: 1,
-  })
+const PopularPage = observer(() => {
+  const {state} = MoviePopularStore
 
   const hideNavbarLinkElement = false
   const {popularMovies, isLoading, pageNumber} = state
   const highlightHomeLink = false
   const highlightPopularLink = true
 
-  const getPopularMovies = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US&page=${pageNumber}`,
-    )
-    const data = await response.json()
-
-    setState(prevState => ({
-      ...prevState,
-      popularMovies: data.results,
-      isLoading: false,
-    }))
-  }
-
   useEffect(() => {
-    getPopularMovies()
+    MoviePopularStore.getPopularMovies()
     /* eslint-disable-next-line */
   }, [pageNumber])
 
   const moveBackPage = () => {
-    setState(prevState => {
-      if (prevState.pageNumber === 1) {
-        return {...prevState}
+    if (MoviePopularStore.state.pageNumber !== 1) {
+      MoviePopularStore.state = {
+        ...MoviePopularStore.state,
+        pageNumber: MoviePopularStore.state.pageNumber - 1,
       }
-      return {...prevState, pageNumber: prevState.pageNumber - 1}
-    })
+    }
   }
 
   const moveForwardPage = () => {
-    setState(prevState => {
-      if (prevState.pageNumber === 20) {
-        return {...prevState}
+    if (MoviePopularStore.state.pageNumber !== 20) {
+      MoviePopularStore.state = {
+        ...MoviePopularStore.state,
+        pageNumber: MoviePopularStore.state.pageNumber + 1,
       }
-      return {...prevState, pageNumber: prevState.pageNumber + 1}
-    })
+    }
   }
 
   return (
@@ -92,6 +77,6 @@ const PopularPage = () => {
       )}
     </div>
   )
-}
+})
 
 export default PopularPage
