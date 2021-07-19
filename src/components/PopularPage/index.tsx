@@ -5,6 +5,7 @@ import {observer} from 'mobx-react'
 import Navbar from '../Navbar'
 import PaginationButton from '../PaginationButton'
 import MoviePopularStore from '../Store/moviePopularStore'
+import MovieSearchStore from '../Store/movieSearchStore'
 import './index.css'
 
 const PopularPage = observer(() => {
@@ -14,6 +15,8 @@ const PopularPage = observer(() => {
   const {popularMovies, isLoading, pageNumber} = state
   const highlightHomeLink = false
   const highlightPopularLink = true
+  MovieSearchStore.state.inputText = ''
+  MovieSearchStore.state.pageNumber = 1
 
   useEffect(() => {
     MoviePopularStore.getPopularMovies()

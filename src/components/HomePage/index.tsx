@@ -1,6 +1,8 @@
 import Navbar from '../Navbar'
 import MovieSlider from '../MovieSlider'
 import Footer from '../Footer'
+import MovieSearchStore from '../Store/movieSearchStore'
+import MoviePopularStore from '../Store/moviePopularStore'
 import './index.css'
 
 const sliderData = [
@@ -28,6 +30,9 @@ const HomePage = () => {
   const hideNavbarLinkElement = false
   const highlightHomeLink = true
   const highlightPopularLink = false
+  MovieSearchStore.state.inputText = ''
+  MoviePopularStore.state.pageNumber = 1
+
   return (
     <div>
       <div className="home-top-container">

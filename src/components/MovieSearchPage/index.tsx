@@ -3,6 +3,7 @@ import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import {observer} from 'mobx-react'
 import MovieSearchStore from '../Store/movieSearchStore'
+import MoviePopularStore from '../Store/moviePopularStore'
 import Navbar from '../Navbar'
 import PaginationButton from '../PaginationButton'
 import NoMatchSearch from '../NoMatchSearch'
@@ -19,6 +20,8 @@ const MovieSearchPage = observer(
     } = MovieSearchStore.state
     const highlightHomeLink = false
     const highlightPopularLink = true
+
+    MoviePopularStore.state.pageNumber = 1
 
     const {match} = props
     const {params} = match

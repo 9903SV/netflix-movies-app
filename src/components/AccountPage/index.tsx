@@ -1,10 +1,14 @@
 import Cookies from 'js-cookie'
 import Navbar from '../Navbar'
+import MovieSearchStore from '../Store/movieSearchStore'
+import MoviePopularStore from '../Store/moviePopularStore'
 import './index.css'
 
 const AccountPage = (props: {history: any}) => {
   const hideNavbarLinkElement = false
   const {history} = props
+  MovieSearchStore.state.inputText = ''
+  MoviePopularStore.state.pageNumber = 1
 
   const accountLogout = () => {
     Cookies.remove('jwt_token')
