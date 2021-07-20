@@ -17,6 +17,7 @@ const PopularPage = observer(() => {
   const highlightPopularLink = true
   MovieSearchStore.state.inputText = ''
   MovieSearchStore.state.pageNumber = 1
+  MovieSearchStore.state.pageNumber = 1
 
   useEffect(() => {
     MoviePopularStore.getPopularMovies()

@@ -31,6 +31,7 @@ const HomePage = () => {
   const highlightHomeLink = true
   const highlightPopularLink = false
   MovieSearchStore.state.inputText = ''
+  MovieSearchStore.state.pageNumber = 1
   MoviePopularStore.state.pageNumber = 1
 
   return (

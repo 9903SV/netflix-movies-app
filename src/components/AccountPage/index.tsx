@@ -8,6 +8,7 @@ const AccountPage = (props: {history: any}) => {
   const hideNavbarLinkElement = false
   const {history} = props
   MovieSearchStore.state.inputText = ''
+  MovieSearchStore.state.pageNumber = 1
   MoviePopularStore.state.pageNumber = 1
 
   const accountLogout = () => {
