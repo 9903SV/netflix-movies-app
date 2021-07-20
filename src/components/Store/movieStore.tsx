@@ -1,4 +1,5 @@
 import {makeAutoObservable} from 'mobx'
+import {apiStatusConstants} from './moviePopularStore'
 
 interface movieDataType {
     backdropPath?: string; /* eslint-disable-line */
@@ -17,7 +18,7 @@ interface movieDataType {
 }
 
 class MovieStore {
-  state = {movieData: {}, isLoading: true}
+  state = {movieData: {}, apiStatus: apiStatusConstants.initial}
 
   constructor() {
     makeAutoObservable(this)
@@ -30,6 +31,8 @@ class MovieStore {
   }
 
   getMovieData = async (id: number) => {
+    this.state = {...this.state, apiStatus: apiStatusConstants.inProgress}
+
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US`,
     )
@@ -56,7 +59,7 @@ class MovieStore {
       moreMovies: moreData.results,
     }
 
-    this.state = {movieData: updatedData, isLoading: false}
+    this.state = {movieData: updatedData, apiStatus: apiStatusConstants.success}
   }
 }
 

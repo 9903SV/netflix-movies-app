@@ -45,39 +45,6 @@
   justify-content: center;
 }
 
-.signin-labelinput-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 16px 0;
-}
-
-.signin-label {
-  width: 65px;
-  height: 16px;
-  font: normal bold 12px/16px Roboto;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
-.signin-input {
-  height: 30px;
-  background: #333333;
-  border-radius: 2px;
-  border-style: none;
-  font: normal normal 14px/24px Roboto;
-  color: #ffffff;
-  padding: 8px;
-}
-
-.signin-error-msg {
-  width: 239px;
-  height: 18px;
-  font: normal normal 14px/18px HK Grotesk;
-  color: #fb923c;
-}
-
 .signin-button-container {
   text-align: center;
   margin: 16px;

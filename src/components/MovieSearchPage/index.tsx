@@ -14,7 +14,7 @@ const MovieSearchPage = observer(
     const hideNavbarLinkElement = false
     const {
       searchMoviesList,
-      isLoading,
+      apiStatus,
       inputText,
       pageNumber,
     } = MovieSearchStore.state
@@ -50,7 +50,7 @@ const MovieSearchPage = observer(
       }
     }
 
-    if (searchMoviesList.length === 0 && !isLoading) {
+    if (searchMoviesList.length === 0 && apiStatus === 'SUCCESS') {
       return <NoMatchSearch inputText={inputText} />
     }
     return (
@@ -62,7 +62,7 @@ const MovieSearchPage = observer(
           highlightHomeLink={highlightHomeLink}
           highlightPopularLink={highlightPopularLink}
         />
-        {isLoading ? (
+        {apiStatus !== 'SUCCESS' ? (
           <Loader
             // style={{textAlign: 'center'}}
             type="TailSpin"

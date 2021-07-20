@@ -1,9 +1,10 @@
 import {makeAutoObservable} from 'mobx'
+import {apiStatusConstants} from './moviePopularStore'
 
 class MovieSearchStore {
   state = {
     searchMoviesList: [],
-    isLoading: true,
+    apiStatus: apiStatusConstants.initial,
     inputText: '',
     pageNumber: 1,
   }
@@ -13,6 +14,11 @@ class MovieSearchStore {
   }
 
   getSearchMovies = async (input: string) => {
+    this.state = {
+      ...this.state,
+      apiStatus: apiStatusConstants.inProgress,
+    }
+
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=1b2d30ef98a7d05a52a075002d77b253&language=en-US&page=${this.state.pageNumber}&query=${input}`,
     )
@@ -20,7 +26,7 @@ class MovieSearchStore {
 
     this.state = {
       searchMoviesList: data.results,
-      isLoading: false,
+      apiStatus: apiStatusConstants.success,
       inputText: input,
       pageNumber: this.state.pageNumber,
     }

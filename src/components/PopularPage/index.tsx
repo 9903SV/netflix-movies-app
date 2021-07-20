@@ -12,7 +12,7 @@ const PopularPage = observer(() => {
   const {state} = MoviePopularStore
 
   const hideNavbarLinkElement = false
-  const {popularMovies, isLoading, pageNumber} = state
+  const {popularMovies, apiStatus, pageNumber} = state
   const highlightHomeLink = false
   const highlightPopularLink = true
   MovieSearchStore.state.inputText = ''
@@ -50,7 +50,7 @@ const PopularPage = observer(() => {
         highlightHomeLink={highlightHomeLink}
         highlightPopularLink={highlightPopularLink}
       />
-      {isLoading ? (
+      {apiStatus !== 'SUCCESS' ? (
         <Loader
           // style={{textAlign: 'center'}}
           type="TailSpin"

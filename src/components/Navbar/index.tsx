@@ -13,7 +13,7 @@ interface navbarPropsType extends RouteComponentProps {
 }
 
 const Navbar = observer((props: navbarPropsType) => {
-  const inputChanged = (event: {target: {value: string}}) => {
+  const inputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     MovieSearchStore.state.inputText = event.target.value
   }
 

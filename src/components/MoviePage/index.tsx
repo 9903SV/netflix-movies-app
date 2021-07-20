@@ -23,7 +23,6 @@ export interface movieDataType {
 }
 
 const MoviePage = observer((props: {match: {params: {id: number}}}) => {
-
   const {match} = props
   const {params} = match
   const {id} = params
@@ -48,12 +47,12 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
 
   const renderMovieDetailsContainer = (
     movieData: movieDataType,
-    isLoading: boolean,
+    apiStatus: string,
   ) => (
     <div className="movie-details-container">
       <div>
         <p className="movie-detail-heading">Genres</p>
-        {!isLoading &&
+        {apiStatus === 'SUCCESS' &&
           movieData.genres !== undefined &&
           movieData.genres.map(eachGenre => (
             <p key={eachGenre.id}>{eachGenre.name}</p>
@@ -61,7 +60,7 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
       </div>
       <div>
         <p className="movie-detail-heading">Audio Available</p>
-        {!isLoading &&
+        {apiStatus === 'SUCCESS' &&
           movieData.spokenLanguages !== undefined &&
           movieData.spokenLanguages.map(eachAudio => (
             <p key={eachAudio.name}>{eachAudio.name}</p>
@@ -84,12 +83,12 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
 
   const renderMoreMoviesContainer = (
     movieData: movieDataType,
-    isLoading: boolean,
+    apiStatus: string,
   ) => (
     <div>
       <h1 className="movies-more-heading">More like this</h1>
       <div>
-        {!isLoading &&
+        {apiStatus === 'SUCCESS' &&
           movieData.moreMovies !== undefined &&
           movieData.moreMovies.map(
             (eachResult: {id: string; poster_path: string}) => (
@@ -108,24 +107,24 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
 
   const renderMovieBottomContainer = (
     movieData: movieDataType,
-    isLoading: boolean,
+    apiStatus: string,
   ) => (
     <div className="movie-bottom-container">
-      {renderMovieDetailsContainer(movieData, isLoading)}
-      {renderMoreMoviesContainer(movieData, isLoading)}
+      {renderMovieDetailsContainer(movieData, apiStatus)}
+      {renderMoreMoviesContainer(movieData, apiStatus)}
     </div>
   )
 
   const hideNavbarLinkElement = false
   const movieData: movieDataType = MovieStore.state.movieData /* eslint-disable-line */
-  const isLoading: boolean = MovieStore.state.isLoading /* eslint-disable-line */
+  const apiStatus: string = MovieStore.state.apiStatus /* eslint-disable-line */
 
   return (
     <div>
       <div
         style={{
           backgroundImage: `${
-            isLoading
+            apiStatus !== 'SUCCESS'
               ? ''
               : `url(https://image.tmdb.org/t/p/original/${movieData.backdropPath}`
           }`,
@@ -139,7 +138,7 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
           hideLinkSearchProfile={hideNavbarLinkElement}
           backgroundColor="transparent"
         />
-        {isLoading ? (
+        {apiStatus !== 'SUCCESS' ? (
           <Loader
             // style={{textAlign: 'center'}}
             type="TailSpin"
@@ -151,10 +150,10 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
           renderMovieContentContainer(movieData)
         )}
       </div>
-      {isLoading ? (
+      {apiStatus !== 'SUCCESS' ? (
         <Loader type="TailSpin" color="red" height={50} width={50} />
       ) : (
-        renderMovieBottomContainer(movieData, isLoading)
+        renderMovieBottomContainer(movieData, apiStatus)
       )}
     </div>
   )

@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
+import InputComponent from '../InputComponent'
 import './index.css'
 
 const SignInPage = (props: {history: any}) => {
@@ -12,11 +13,11 @@ const SignInPage = (props: {history: any}) => {
     showPasswordErrorMsg: false,
   })
 
-  const usernameChanged = (event: {target: {value: string}}) => {
+  const usernameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState(prevState => ({...prevState, username: event.target.value}))
   }
 
-  const passwordChanged = (event: {target: {value: string}}) => {
+  const passwordChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState(prevState => ({...prevState, password: event.target.value}))
   }
 
@@ -36,7 +37,7 @@ const SignInPage = (props: {history: any}) => {
     setState(prevState => ({...prevState, showErrorMsg: true}))
   }
 
-  const usernameBlurred = (event: {target: {value: string}}) => {
+  const usernameBlurred = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value === '') {
       setState(prevState => ({...prevState, showUsernameErrorMsg: true}))
     } else {
@@ -44,7 +45,7 @@ const SignInPage = (props: {history: any}) => {
     }
   }
 
-  const passwordBlurred = (event: {target: {value: string}}) => {
+  const passwordBlurred = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value === '') {
       setState(prevState => ({...prevState, showPasswordErrorMsg: true}))
     } else {
@@ -65,7 +66,8 @@ const SignInPage = (props: {history: any}) => {
     return body.request_token
   }
 
-  const signinClicked = async () => {
+  const formSubmitted = async (event: React.SyntheticEvent) => {
+    event.preventDefault()
     const {username, password} = state
     const requestToken = await getAccessToken()
 
@@ -108,50 +110,30 @@ const SignInPage = (props: {history: any}) => {
         className="signin-movies-logo"
       />
       <div className="signin-main-container">
-        <div className="signin-form-container">
+        <div className="signin-form-container" onSubmit={formSubmitted}>
           <h1 className="signin-form-heading">Sign In</h1>
           <form className="signin-form">
-            <div className="signin-labelinput-container">
-              <label className="signin-label" htmlFor="signin-username">
-                USERNAME
-              </label>
-              <input
-                onChange={usernameChanged}
-                className="signin-input"
-                type="text"
-                id="signin-username"
-                onBlur={usernameBlurred}
-              />
-              {showUsernameErrorMsg && (
-                <p className="signin-error-msg">*Required</p>
-              )}
-            </div>
-            <div className="signin-labelinput-container">
-              <label className="signin-label" htmlFor="signin-password">
-                PASSWORD
-              </label>
-              <input
-                onChange={passwordChanged}
-                className="signin-input"
-                type="password"
-                id="signin-password"
-                onBlur={passwordBlurred}
-              />
-              {showPasswordErrorMsg && (
-                <p className="signin-error-msg">*Required</p>
-              )}
-            </div>
+            <InputComponent
+              labelText="USERNAME"
+              showErrorMsg={showUsernameErrorMsg}
+              inputChanged={usernameChanged}
+              inputBlurred={usernameBlurred}
+              inputType="text"
+            />
+            <InputComponent
+              labelText="PASSWORD"
+              showErrorMsg={showPasswordErrorMsg}
+              inputChanged={passwordChanged}
+              inputBlurred={passwordBlurred}
+              inputType="password"
+            />
             {showErrorMsg && (
               <p className="signin-error-msg">
                 Please enter a valid Email & Password
               </p>
             )}
             <div className="signin-button-container">
-              <button
-                onClick={signinClicked}
-                className="signin-button"
-                type="button"
-              >
+              <button className="signin-button" type="submit">
                 Sign In
               </button>
             </div>

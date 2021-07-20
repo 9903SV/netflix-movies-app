@@ -16,7 +16,11 @@ const AccountPage = (props: {history: any}) => {
   }
 
   const username = Cookies.get('movies_username')
-  const passwordLength = Cookies.get('movies_password') || ''.length
+  const encryptedPassword = Cookies.get('movies_password')
+  let passwordLength = 0
+  if (encryptedPassword !== undefined) {
+    passwordLength = encryptedPassword.length
+  }
 
   let password = ''
   for (let count = 0; count < passwordLength; count += 1) {
