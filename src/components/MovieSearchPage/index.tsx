@@ -21,11 +21,14 @@ const MovieSearchPage = observer(
     const highlightHomeLink = false
     const highlightPopularLink = true
 
-    MoviePopularStore.state.pageNumber = 1
-
     const {match} = props
     const {params} = match
     const {input} = params
+
+    MoviePopularStore.state.pageNumber = 1
+    if (MovieSearchStore.state.inputText !== input) {
+      MovieSearchStore.state.pageNumber = 1
+    }
 
     useEffect(() => {
       MovieSearchStore.getSearchMovies(input)

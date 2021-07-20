@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx'
+import {makeObservable, observable, action} from 'mobx'
 
 export const apiStatusConstants = {
   initial: 'INITIAL',
@@ -8,17 +8,17 @@ export const apiStatusConstants = {
 }
 
 class MoviePopularStore {
-  state = {
+  @observable state = {
     popularMovies: [],
     apiStatus: apiStatusConstants.initial,
     pageNumber: 1,
   }
 
   constructor() {
-    makeAutoObservable(this)
+    makeObservable(this)
   }
 
-  getPopularMovies = async () => {
+  @action getPopularMovies = async () => {
     this.state = {
       ...this.state,
       apiStatus: apiStatusConstants.inProgress,

@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx'
+import {makeObservable, observable, action} from 'mobx'
 import {apiStatusConstants} from './moviePopularStore'
 
 interface movieDataType {
@@ -18,19 +18,19 @@ interface movieDataType {
 }
 
 class MovieStore {
-  state = {movieData: {}, apiStatus: apiStatusConstants.initial}
+  @observable state = {movieData: {}, apiStatus: apiStatusConstants.initial}
 
   constructor() {
-    makeAutoObservable(this)
+    makeObservable(this)
   }
 
-  timeInHrs = (time: number) => {
+  @action timeInHrs = (time: number) => {
     const hrs = Math.floor(time / 60)
     const mins = time - hrs * 60
     return `${hrs}h ${mins}m`
   }
 
-  getMovieData = async (id: number) => {
+  @action getMovieData = async (id: number) => {
     this.state = {...this.state, apiStatus: apiStatusConstants.inProgress}
 
     const response = await fetch(

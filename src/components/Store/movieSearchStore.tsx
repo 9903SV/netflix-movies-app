@@ -1,8 +1,8 @@
-import {makeAutoObservable} from 'mobx'
+import {makeObservable, observable, action} from 'mobx'
 import {apiStatusConstants} from './moviePopularStore'
 
 class MovieSearchStore {
-  state = {
+  @observable state = {
     searchMoviesList: [],
     apiStatus: apiStatusConstants.initial,
     inputText: '',
@@ -10,10 +10,10 @@ class MovieSearchStore {
   }
 
   constructor() {
-    makeAutoObservable(this)
+    makeObservable(this)
   }
 
-  getSearchMovies = async (input: string) => {
+  @action getSearchMovies = async (input: string) => {
     this.state = {
       ...this.state,
       apiStatus: apiStatusConstants.inProgress,
