@@ -8,6 +8,7 @@ interface InputPropsType {
     inputType: string; /* eslint-disable-line */
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const InputComponent = (props: InputPropsType) => {
   const {labelText, showErrorMsg, inputChanged, inputBlurred, inputType} = props
   return (

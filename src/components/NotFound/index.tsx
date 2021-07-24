@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import Navbar from '../Navbar'
 import './index.css'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const NotFound = () => {
   const hideNavbarLinkElement = true
   return (

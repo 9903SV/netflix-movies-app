@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {useState, useEffect} from 'react'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
@@ -37,6 +38,7 @@ const settings = {
   ],
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const MovieSlider = (props: {url: string; title: string}) => {
   const [state, setState] = useState({moviesData: []})
   const {url} = props

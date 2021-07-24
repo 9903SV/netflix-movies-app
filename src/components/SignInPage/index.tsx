@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom'
 import InputComponent from '../InputComponent'
 import './index.css'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const SignInPage = (props: {history: any}) => {
   const [state, setState] = useState({
     username: '',

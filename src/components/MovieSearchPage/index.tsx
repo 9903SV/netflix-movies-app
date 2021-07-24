@@ -76,6 +76,7 @@ const MovieSearchPage = observer(
         ) : (
           <div className="moviesearch-movies-container">
             {searchMoviesList.map(
+              // eslint-disable-next-line camelcase
               (eachResult: {id: string; backdrop_path: string}) => {
                 if (eachResult.backdrop_path !== null) {
                   return (

@@ -1,6 +1,6 @@
 .notfound-bg-container {
   background-image: url('https://res.cloudinary.com/dfheomufg/image/upload/v1624963143/Movies%20App/snow-removal-machine-working-high-ski-slope-snowstorm_454047-2149_1_ior7mh.png');
-  height: 88vh;
+  min-height: 88vh;
   background-size: cover;
   display: flex;
   flex-direction: column;

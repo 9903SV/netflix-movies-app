@@ -1,6 +1,7 @@
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import './index.css'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const PaginationButton = (props: {
   /* eslint-disable */
   moveBackPage: Function, 
@@ -18,7 +19,7 @@ const PaginationButton = (props: {
   }
 
   return (
-    <div className="pagination-buttons-container">
+    <div className="pagination-buttons-container" style={{backgroundColor: '#000000'}}>
       <IoIosArrowBack
         className="pagination-button pagination-back-button"
         onClick={backButtonClicked}

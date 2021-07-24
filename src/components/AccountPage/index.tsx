@@ -4,6 +4,7 @@ import MovieSearchStore from '../Store/movieSearchStore'
 import MoviePopularStore from '../Store/moviePopularStore'
 import './index.css'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const AccountPage = (props: {history: any}) => {
   const hideNavbarLinkElement = false
   const {history} = props

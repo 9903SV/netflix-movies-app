@@ -1,6 +1,7 @@
 import Navbar from '../Navbar'
 import './index.css'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const NoMatchSearch = (props: {inputText: string}) => {
   const {inputText} = props
   const hideLinkSearchProfile = false

@@ -15,7 +15,6 @@
     "@types/react": "17.0.14",
     "@types/react-dom": "17.0.9",
     "chalk": "4.1.0",
-    "eslint": "7.31.0",
     "js-cookie": "2.2.1",
     "mobx": "6.3.2",
     "mobx-react": "7.2.0",
@@ -28,13 +27,22 @@
     "react-slick": "0.28.1",
     "react-social-icons": "5.5.0",
     "social-media-icons-react": "1.1.2",
+    "@storybook/react": "6.3.5",
     "typescript": "4.3.5"
   },
   "devDependencies": {
     "@babel/preset-typescript": "7.14.5",
+    "@storybook/addon-actions": "6.3.5",
+    "@storybook/addon-essentials": "6.3.5",
+    "@storybook/addon-links": "6.3.5",
+    "@storybook/node-logger": "6.3.5",
+    "@storybook/preset-create-react-app": "3.2.0",
     "@types/js-cookie": "2.2.7",
     "@types/react-router-dom": "5.1.8",
     "@types/react-slick": "0.23.5",
+    "@typescript-eslint/eslint-plugin": "4.28.4",
+    "@typescript-eslint/parser": "4.28.4",
+    "eslint": "7.31.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-prettier": "3.3.1",
@@ -48,10 +56,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint .",
+    "lint": "eslint . --ext .ts",
     "lint:fix": "eslint --fix src/",
     "format": "prettier --write \"./src\"",
-    "run-all": "npm-run-all --parallel test lint:fix"
+    "run-all": "npm-run-all --parallel test lint:fix",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "lint-staged": {
     "*.js": [
@@ -82,6 +92,26 @@
       "last 4 versions",
       "Firefox ESR",
       "not ie < 11"
+    ]
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   }
 }

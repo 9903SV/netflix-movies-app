@@ -62,7 +62,11 @@ const PopularPage = observer(() => {
       ) : (
         <div className="popular-movies-container">
           {popularMovies.map(
-            (eachResult: {id: string; poster_path: string}) => (
+            (eachResult: {
+              id: string
+              // eslint-disable-next-line camelcase
+              poster_path: string
+            }) => (
               <Link to={`/movie/${eachResult.id}`} key={eachResult.id}>
                 <img
                   src={`https://image.tmdb.org/t/p/original/${eachResult.poster_path}`}

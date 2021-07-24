@@ -26,6 +26,7 @@ const sliderData = [
   },
 ]
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const HomePage = () => {
   const hideNavbarLinkElement = false
   const highlightHomeLink = true

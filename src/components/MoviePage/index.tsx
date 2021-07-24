@@ -91,6 +91,7 @@ const MoviePage = observer((props: {match: {params: {id: number}}}) => {
         {apiStatus === 'SUCCESS' &&
           movieData.moreMovies !== undefined &&
           movieData.moreMovies.map(
+            // eslint-disable-next-line camelcase
             (eachResult: {id: string; poster_path: string}) => (
               <Link to={`/movie/${eachResult.id}`} key={eachResult.id}>
                 <img
